@@ -8,7 +8,7 @@
 	 _start:
 
 	 MOV 	R0, #1 
-         LDR 	R1, =Prompt 	@ Load asciz message to R1
+         LDR 	R1, =Str @ Load asciz message to R1
          SWI 	0x69 	@ Prints the string   
       
 	 LDR R1,=idx    @ content of idx is length of Vec and now R1 is a counter. 
@@ -29,6 +29,7 @@
          MOV R0,#1      @ To print out using SWI 0x6b
          SWI 0x6b       @ Printing the constant of R1
          SWI 0x11       @ Terminates the program
+	 
          .data          @ Directive for beginning of data part 
          .align         @ Directive for alignment of memory addresses 
     idx: .word 16       @ Total number of elements of vector 
@@ -37,5 +38,5 @@
          .word 2,-1,0,6
          .word -10,-9,8,2
     Sum: .skip 4        @ results 
-    Prompt: .asciz "Sum of Squares: "
+    Str: .asciz "Sum of Squares: "
          .end
