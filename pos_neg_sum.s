@@ -12,8 +12,8 @@ Vec: .word -7,3,5,1  		@ vector initiation
      .word 2,-1,0,6
      .word -10,-9,8,2
 
-N:   .asciz "Sum of Negative Numbers: "
-P:   .asciz "\nSum of Positive Numbers: "
+NSUM:   .asciz "Sum of Negative Numbers: "
+PSUM:   .asciz "\nSum of Positive Numbers: "
 
 .EQU	SUM, 0x00001200
 
@@ -22,19 +22,19 @@ P:   .asciz "\nSum of Positive Numbers: "
 	.TEXT
 @------End of Assembler Directives----------------	
 main:	LDR	R1, =Vec	@ load the beginning address of Vec to R1
-	    MOV	R2, #16		@ R2 is the counter
-	    BL	GET_SUM		@ jump to the subroutine
-	    LDR	R4, =SUM	@ load the address of SUM to R0
-	    STR	R0, [R4]	@ store the final result
+	MOV	R2, #16		@ R2 is the counter
+	BL	GET_SUM		@ jump to the subroutine
+	LDR	R4, =SUM	@ load the address of SUM to R0
+	STR	R0, [R4]	@ store the final result
 
         MOV 	R0,#1      	@ To print out using SWI 0x6b
-        LDR 	R1, =N 		@ Load asciz message to R1
+        LDR 	R1, =NSUM 	@ Load asciz message to R1
         SWI 	0x69 		@ Prints the string
 	MOV 	R1,R6      	@ Making R1 ready for print out
 	SWI 	0x6b       	@ Printing the integer of R1
 
-	MOV 	R0, #1 
-        LDR 	R1, =P 		@ Load asciz message to R1
+	MOV 	R0, #1 		@ To print out using SWI 0x6b
+        LDR 	R1, =PSUM 	@ Load asciz message to R1
         SWI 	0x69 		@ Prints the string
 	MOV 	R1, R5		@ Making R1 ready for print out
 	SWI 	0x6b       	@ Printing the integer of R1
@@ -55,6 +55,7 @@ IF_NEG:
 	SUBS R2, R2, #1		@ decrement counter by 1; result sets condition flags
 	BGT	loop 		@ if counter > 1, branch to loop
 	BX	LR		@ return to the main routine
+
 IF_POS:
 	ADDPL	R5, R5, R3	@ add the number to R0
 	SUBS	R2, R2, #1	@ decrement counter by 1; result sets condition flags
