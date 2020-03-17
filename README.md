@@ -1,1 +1,1 @@
-# Given a vector array
+Given a vector array
