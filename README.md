@@ -1,1 +1,1 @@
-for a vector array
+for a vector array of numbers
