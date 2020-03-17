@@ -7,10 +7,10 @@
      	.data
      	.align
 
-Vec: .word -7,3,5,1  		@ vector initiation 
-     .word -3,5,-18,-10
-     .word 2,-1,0,6
-     .word -10,-9,8,2
+Vec: 	.word -7,3,5,1  		@ vector initiation 
+     	.word -3,5,-18,-10
+     	.word 2,-1,0,6
+     	.word -10,-9,8,2
 
 NSUM:   .asciz "Sum of Negative Numbers: "
 PSUM:   .asciz "\nSum of Positive Numbers: "
