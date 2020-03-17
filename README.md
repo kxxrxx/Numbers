@@ -1,1 +1,1 @@
-# Sum_of_Squares
+# Given a vector array
